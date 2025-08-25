@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product detail page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<style>
+        *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'Jost', sans-serif;
+    list-style: none;
+    text-decoration: none;
+}
+/* navbar */
+header{
+    position: fixed;
+    background: #fff;
+    width: 100%;
+    top: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 10%;
+    box-shadow: 0px 0px 10px rgb(0 0 0 / 10%);
+}
+.logo img{
+    max-width: 120px;
+    height: auto;
+}
+.navmenu{
+    display: flex;
+}
+.navmenu a{
+    color: #2c2c2c;
+    font-size: 16px;
+    text-transform: capitalize;
+    padding: 10px 20px;
+    font-weight: 400;
+    transition: all .42s ease;
+}
+.navmenu a:hover{
+    text-transform: scale(1.1);
+    color: #EE1C47;
+}
+.nav-icon{
+    display: flex;
+    align-items: center;
+}
+.nav-icon i{
+    margin-right: 20px;
+    color: #2c2c2c;
+    font-size: 25px;
+    font-weight: 400;
+    transition: all .42s ease;
+}
+.nav-icon i:hover{
+    transform: scale(1.1);
+    color: #EE1C47;
+}
+#menu-icon{
+    font-size: 35px;
+    color: #2c2c2c;
+    z-index: 10001;
+    cursor: pointer;
+}
+.main{
+    /* background-color: #d78585; */
+    /* height: 800px; */
+    width: 100%;
+    margin-top: 170px;
+    display: flex;
+    cursor:pointer;
+
+}
+.desc{
+    /* background-color: #EE1C47; */
+    width: 60%;
+    padding: 50px;
+}
+
+.desc h1{
+    font-size: 66px;
+    width: 88%;
+    background-color: #fff;
+    font-weight: 900;
+}
+.desc h3{
+    font-size: 40px;
+    font-weight: 300;
+}
+.desc p{
+    letter-spacing: 2px;
+    font-size: 20px;
+    color: #e30f39;
+}
+.size-option {
+    padding: 15px;
+    border-radius: 50%;
+    margin: 3px;
+}
+
+/* .add{
+    background-color: #EE1C47;
+    padding: 30px;
+    border-radius: 80%;
+    /* position: relative; 
+    position: absolute;
+    top:60%;
+    left:50%;
+
+} */
+.image-section{
+    display: flex;
+    flex-wrap: nowrap;
+    margin-top: 70px;
+}
+.image-section img{
+    height: 250px;
+    width: 180px;
+    object-fit: cover;
+    z-index: 11;
+    filter: blur(3px);
+}
+.image-section img:hover{
+    filter: blur(0);
+}
+.product{
+    /* background-color: aqua; */
+    width: 40%;
+}
+.product img{
+    position: absolute;
+    width: 37%;
+    height: 900px;
+    object-fit: cover;
+    /* background: none; */
+}
+.spare-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 50px;
+}
+
+.review {
+    width: 40%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.review h2 {
+    margin-top: 0;
+}
+
+.filter {
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    background-color: #eee;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.filter-btn:hover {
+    background-color: #ddd;
+}
+
+#review-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#review-list li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+#review-list li:last-child {
+    border-bottom: none;
+}
+
+.detail {
+    width: 55%;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.detail .desc{
+    /* background: #000; */
+    width: fit-content;
+}
+
+.size-chart {
+    border-collapse: collapse;
+    width: 100%;
+}
+.detail .desc p{
+    color: #2c2c2c;
+}
+.size-chart th, .size-chart td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+.desc button{
+    margin: 20px 0;
+    width: max-content;
+    padding: 10px 20px;
+    border-radius: 30px;
+
+}
+.size-chart th {
+    background-color: #f0f0f0;
+}
+
+.modal{
+      display: none;
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgb(0,0,0);
+      background-color: rgba(0,0,0,0.4);
+    }
+    .modal-content{
+      background-color: #fefefe;
+      margin: 10% 10%;
+      padding: 20px;
+      border:  1px solid #888;
+      width: 80%;
+    }
+    .close{
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+    .close:hover,
+    .close:focus{
+      color:black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    #up{
+        display: none;
+    }
+    #text{
+        display: none;
+    }
+
+    @media (max-width :1125px){
+        .product img{
+            height: 700px;
+        }
+        .image-section {
+          /* background-color: #888; */
+          width: 700px;
+          justify-content: space-between;
+        }
+        .image-section  img{
+            width: 400px;
+            object-fit: cover;
+        }
+    }
+    @media (max-width:800px){
+        .main{
+            flex-direction: column;
+            width: fit-content;
+            /* background-color: #e30f39; */
+        }
+        .desc{
+            width: 90%;
+            /* background-color: #2c2c2c; */
+        }
+        .desc h1,h3,p,h4 {
+            font-size: 30px;
+            width:99%;
+            /* background-color: #888; */
+        }
+        .product img {
+            height: 400px;
+            margin: 20px 28%;
+        }
+        .spare-section{
+            margin-top: 500px;
+        }
+        .review,.detail{
+            width: 97%;
+            margin-bottom: 20px;
+        }
+    }
+    @media (max-width:500px){
+        .desc h1,h3,p,h4 {
+            font-size: 30px;
+            width: 90%;
+        }
+        .product img {
+            height: 600px;
+            width: 600px;
+            object-fit: cover;
+            margin: 20px 28%;
+        }
+        .spare-section{
+            margin-top: 700px;
+        }
+        .review,.detail{
+            width: 700px;
+            margin-bottom: 20px;
+        }
+    }
+</style>
+<body>
+     <!-- navbar -->
+     <header>
+        <div class="bx bx-menu" id="menu-icon"></div>
+        <a href="#" class="logo"><img src="../Images/logo.png" alt=""></img>
+        <div class="nav-icon">
+            <a href="#"><i class="bx bx-search"></i></a>
+            <a href="#"><i class="bx bx-user"></i></a>
+            <a href="#" id="cart-icon"><i class="bx bx-cart"></i></a>
+        </div>
+    </header>
+   
+    <!-- main section -->
+    <!-- <span class="add">ADD</span> -->
+     <section class="main">
+        <div class="desc">
+            <h1>Lost Road Trip Cardigan wool sweater knitting pattern</h1>
+            <h3>  &#x20b9;  614</h3>
+            <p>In demand. 4 people bought this in the last 24 hours.</p>
+            <h4 class="subsize">SELECT SIZE</h4>
+            <div class="size-options">
+                <button class="size-option" >S</button>
+                <button class="size-option" >M</button>
+                <button class="size-option" >L</button>
+                <button class="size-option" >XL</button>
+                <button class="size-option" >XXL</button>
+            </div>
+            <div class="image-section">
+                <img src="https://i.etsystatic.com/14111510/r/il/62ec25/2901437003/il_1140xN.2901437003_jafp.jpg" alt="img1" onclick="display1(this)">
+                <img src="https://i.etsystatic.com/14111510/r/il/178006/2853775186/il_1140xN.2853775186_rpl1.jpg" alt="img2" onclick="display1(this)">
+                <img src="https://i.etsystatic.com/14111510/r/il/3b9143/2853775276/il_1140xN.2853775276_9k9a.jpg" alt="img3" onclick="display1(this)">
+                <img src="https://i.etsystatic.com/14111510/r/il/21f95e/2853775284/il_1140xN.2853775284_qlq3.jpg" alt="img4" onclick="display1(this)">
+            </div>
+          
+        </div>
+        <div class="product">
+            <img src="https://i.etsystatic.com/14111510/r/il/3f808a/2901436987/il_794xN.2901436987_ldhn.jpg" alt="imag5" id="product-image">
+        </div>
+    
+    </section>
+
+     <!-- spare section -->
+
+<section class="main spare-section">
+    <div class="review">
+        <h2>Reviews</h2>
+        <div class="filter">
+            <button class="filter-btn" data-rating="5">5 stars</button>
+            <button class="filter-btn" data-rating="4">4 stars</button>
+            <button class="filter-btn" data-rating="3">3 stars</button>
+            <button class="filter-btn" data-rating="2">2 stars</button>
+            <button class="filter-btn" data-rating="1">1 star</button>
+        </div>
+        <ul id="review-list">
+            
+        </ul>
+    </div>
+    <div class="detail">
+       <div class="desc">
+        <span style="display: flex; justify-content: space-between;">
+            <h3>Item details</h3>
+            <p id="down"onclick="show()">
+                <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#5f6368"><path d="M480-353 240-593l46.67-46.67 193.33 193 193.33-193L720-593 480-353Z"/></svg>
+            </p>
+            <p id="up"onclick="show()">
+                <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#000000"><path d="M286.67-350.33 240-397l240-240 240 240-46.67 46.67-193.33-193-193.33 193Z"/></svg>
+            </p>
+        </span>
+        <p id="text">
+            Say hello to your coziest new sweater for all those let’s get lost roadtrips! This sweater is knit on sizes 15 and 25mm straight needles, giving it a soft, squishy, and cozy vibe! Slight distressing is featured throughout. Don’t be too nervous at the drop one stitch, it’s actually fun! This cardigan is all about the lived in feel. Love it, live in it, have a good trip.
+            
+            This is a one sized cardigan.
+            
+            Materials Needed
+            
+            5 skeins We Are Knitters “The Wool” or similar super bulky weight yarn
+            Sizes 15mm and 25mm straight knitting needles
+            Darning needle for weaving in ends
+            
+            Skills Needed
+            
+            Longtail cast on method, stockinette stitch,1x1 twisted rib stitch, yarn over and knit two together, make one stitch, picking up stitches
+            
+            Finished Measurements
+            
+            Length- 23”
+            Width- 28”
+            Sleeve length- 18”
+            
+            Please message me with any questions!
+            Thank you!
+            ❤️Bethany</p>
+       </div>
+       <div class="desc">
+        <span style="display: flex; justify-content: space-between;">
+            <h3>Delievery</h3>
+            <p class="down" >
+                <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#5f6368"><path d="M480-353 240-593l46.67-46.67 193.33 193 193.33-193L720-593 480-353Z"/></svg>
+            </p>
+            <p class="up">
+                <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#000000"><path d="M286.67-350.33 240-397l240-240 240 240-46.67 46.67-193.33-193-193.33 193Z"/></svg>
+            </p>
+        </span>
+        <p class="data">We don't accept returns , exchanges or cancellations . Please contact the seller about any problems with your order.Check size chart before placing any order.<br>
+            <button id="myBtn">Size chart</button><br>
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                  <span  id="close1"  >&times;</span>
+                  <p>
+                    <table class="size-chart">
+                        <tr>
+                            <th>Size</th>
+                            <th>Chest</th>
+                            <th>Length</th>
+                        </tr>
+                        <tr>
+                            <td>S</td>
+                            <td>38-40 inches</td>
+                            <td>25-27 inches</td>
+                        </tr>
+                        <tr>
+                            <td>M</td>
+                            <td>42-44 inches</td>
+                            <td>27-29 inches</td>
+                        </tr>
+                        <tr>
+                            <td>L</td>
+                            <td>46-48 inches</td>
+                            <td>29-31 inches</td>
+                        </tr>
+                        <tr>
+                            <td>XL</td>
+                            <td>50-52 inches</td>
+                            <td>31-33 inches</td>
+                        </tr>
+                        <tr>
+                            <td>XXL</td>
+                            <td>54-56 inches</td>
+                            <td>33-35 inches</td>
+                        </tr>
+                    </table>
+                  </p>
+                </div>
+              </div>
+            Wishing you a good day!</p>
+       </div>
+       <div class="desc">
+        <span style="display: flex; justify-content: space-between;">
+            <h3>Did you know?</h3>
+            <p class="down">
+                <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#5f6368"><path d="M480-353 240-593l46.67-46.67 193.33 193 193.33-193L720-593 480-353Z"/></svg>
+            </p>
+            <p class="up">
+                <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#000000"><path d="M286.67-350.33 240-397l240-240 240 240-46.67 46.67-193.33-193-193.33 193Z"/></svg>
+            </p>
+
+        </span>
+        <p>
+                <h4>  <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#9B5278"><path d="M475-146.67q4.67 0 10.33-2.33 5.67-2.33 9-5.67l334-334.66Q841-502 847.17-518.11q6.16-16.11 6.16-32.22 0-16.67-6.16-32.84-6.17-16.16-18.84-28.5L651.67-788.33q-12.34-12.67-28.5-18.84-16.17-6.16-32.84-6.16-16.11 0-32.22 6.16Q542-801 529.33-788.33l-15.66 15.66L592.33-693Q606-679 615-660.67q9 18.34 9 39.67 0 39.33-29.17 68.17Q565.67-524 526.33-524q-23.33 0-40.5-7.33-17.16-7.34-30.95-21.23L381-626 202-447q-4.33 4.33-6.17 9.18-1.83 4.86-1.83 10.4 0 11.09 7.67 18.92 7.66 7.83 18.77 7.83 5.56 0 10.56-2.66 5-2.67 8.33-6l137.34-137.34L423.33-500 287-363.33q-4.33 4.33-6.17 9.5-1.83 5.16-1.83 10.5 0 10.66 8 18.66t18.67 8q5.33 0 10.33-2.33t8.33-5.67l137.34-137L508.33-415 372-278.33q-3.67 3.33-5.83 8.89-2.17 5.55-2.17 11.11 0 10.66 8 18.66t18.67 8q5.33 0 9.83-1.83t8.83-6.17l137.34-137L593.33-330 456-192.67q-4.33 4.34-6.17 9.5Q448-178 448-173.33q0 12 7.5 19.33 7.5 7.33 19.5 7.33ZM474.71-80q-34.38 0-61.21-24.5t-31.83-60.91q-34-4.92-57-27.92t-28-57q-34-5-56.5-28.5t-27.5-56.5q-37.34-5-61.34-31t-24-62q0-18 6.99-35.54 6.98-17.53 20.01-30.8L381-721l117 117q6 6.33 13.56 9.83 7.55 3.5 15.11 3.5 11.66 0 21.33-9.5 9.67-9.5 9.67-21.27 0-5.23-2.84-11.56-2.83-6.33-9.16-12.33l-143-143q-12.34-12.67-28.5-18.84-16.17-6.16-32.84-6.16-16.11 0-32.22 6.16Q293-801 280.37-788.43L132-639.67q-12.33 12.34-18 26.67-5.67 14.33-7 31.33t5 33.5q6.33 16.5 16.33 30.17l-48 48q-19-22.33-30-52.17-11-29.83-10.33-60.5.67-29.33 12.33-56.5Q64-666.33 85-687.33L232.67-835q22.66-22.33 51.03-33.33 28.36-11 58.16-11 29.81 0 57.97 11 28.17 11 50.5 33.33L466-819.33 481.67-835q22.66-22.33 51.03-33.33 28.36-11 58.16-11 29.81 0 57.97 11 28.17 11 50.5 33.33L875-659.33q22.33 22.33 33.67 51.02Q920-579.62 920-549.98q0 29.65-11.33 57.81Q897.33-464 875-441.67L541-108q-13.33 13.33-30.52 20.67Q493.29-80 474.71-80Zm-98.38-550.67Z"/></svg> Closet Crush Purchase Protection</h4> 
+                <h6>Shop confidently on closet crush knowing if something goes wrong with an order , we've got your back for all eligible purhases </h6>
+                
+            <button id="mybtn">View additional shop policies </button>
+            <div id="mymodal" class="modal">
+                <div class="modal-content">
+                  <span  id="close2" class="close">&times;</span>
+                  <div class="head">
+                    <h1>Shop policies for Closet Crush</h1>
+                    <h3>Payments</h3>
+                    <p><svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#000000"><path d="M226.67-80q-27.5 0-47.09-19.58Q160-119.17 160-146.67v-422.66q0-27.5 19.58-47.09Q199.17-636 226.67-636h60v-90.67q0-80.23 56.57-136.78T480.07-920q80.26 0 136.76 56.55 56.5 56.55 56.5 136.78V-636h60q27.5 0 47.09 19.58Q800-596.83 800-569.33v422.66q0 27.5-19.58 47.09Q760.83-80 733.33-80H226.67Zm0-66.67h506.66v-422.66H226.67v422.66ZM480.11-280q32.22 0 55.06-22.52Q558-325.04 558-356.67q0-31-22.95-55.16Q512.11-436 479.89-436t-55.06 24.17Q402-387.67 402-356.33q0 31.33 22.95 53.83 22.94 22.5 55.16 22.5ZM353.33-636h253.34v-90.67q0-52.77-36.92-89.72-36.93-36.94-89.67-36.94-52.75 0-89.75 36.94-37 36.95-37 89.72V-636ZM226.67-146.67v-422.66 422.66Z"/></svg> Secure Options</p>
+                    <p> <img src="https://www.pngall.com/wp-content/uploads/2017/05/Visa-Logo-PNG-Pic.png" width="150" height="80">
+                        <img src="https://static.vecteezy.com/system/resources/previews/019/167/123/original/mastercard-free-download-free-png.png" width="130" height="120">
+                    </p>
+                    <p>Closet Crush keeps your payment information secure . Closet Crush shops never receive your credit card information.</p>
+                  </div>
+                </div>
+            </div>
+        </p>
+       </div>
+</section>
+
+    <script>
+        function display1(image) {
+            const productImage = document.getElementById('product-image');
+            let temp=productImage.src;
+            productImage.src = image.src;
+            image.src=temp;
+        }
+       
+// generate review list dynamically
+const reviewList = [
+    {
+        rating: 5,
+        review: "Love this product 💗! The quality is amazing and it's so comfortable.",
+        username: "John Doe",
+    },
+    {
+        rating: 4,
+        review: "Good product, but the size is a bit small.",
+        username: "Jane Doe"
+    },
+    {
+        rating: 5,
+        review: "Best purchase ever! The material is so soft and the color is perfect.",
+        username: "Bob Smith"
+    },
+    {
+        rating: 3,
+        review: "It's okay, but not the best.",
+        username: "Alice Johnson"
+    },
+    {
+        rating: 2,
+        review: "Not impressed.",
+        username: "Mike Brown"
+    },
+    {
+        rating: 5,
+        review: "Thank you, new to knitting 🧶 so hopefully all goes well.",
+        username: "Fern"
+    },
+    {
+        rating: 5,
+        review: "Great pattern! I'm plus sized and it still fit great with no adjustments. I skipped dropping the stitches, but I think it looks great either way. Worked up very quickly and I think it's a great, simple pattern for beginners.",
+        username: "Marina"
+    },
+    {
+        rating: 4,
+        review: "Good good good good good 😀",
+        username:"Katerina Kakateli"
+    },
+    {
+        rating: 5,
+        review: "Great pattern 💗, fantastic end result. Also had a question which the seller responded to really quickly. Will certainly be buying more patterns from this seller!",
+        username:"Emma"
+    },
+    {
+        rating: 4,
+        review: "I didn’t actually knit this myself. I bought the wool and pattern and my mum knitted it for me! It took her less than a week and said the pattern was very straight forward, she just had to get used to using such large needles. I love my cardigan!",
+        username: "Morna"
+    },
+    {
+        rating:4,
+        review: "Not made this yet pattern on line great service thank you I look forward to make this",
+        username: "Heldi"
+    }
+];
+
+const reviewListElement = document.getElementById('review-list');
+const filterButtons = document.querySelectorAll('.filter-btn');
+
+filterButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        const rating = button.getAttribute('data-rating');
+        const filteredReviews = reviewList.filter((review) => review.rating === parseInt(rating));
+        renderReviews(filteredReviews);
+    });
+});
+
+function renderReviews(reviews) {
+    reviewListElement.innerHTML = reviews.map(review => `
+        <li>
+            <span>${review.rating} stars</span>
+            <p>${review.review}</p>
+            <span>by ${review.username}</span>
+        </li>
+    `).join('');
+}
+renderReviews(reviewList);
+
+
+var modal=document.getElementById("myModal");
+      var btn=document.getElementById("myBtn");
+    //   var span=document.getElementsByClassName("close")[0];
+    var span=document.getElementById("close1");
+      // when the user click on button open the modal 
+      btn.onclick=function(){
+        modal.style.display="block";
+      }
+      // when user clicks on <span> (x) ,close the modal
+      span.onclick=function(){
+        modal.style.display="none";
+      }
+       
+      var mm=document.getElementById("mymodal");
+      var bttn=document.getElementById("mybtn");
+    //   var show=document.getElementsByClassName("close")[0];
+    var show=document.getElementById("close2");
+      bttn.onclick=function(){
+        mm.style.display="block";
+      }
+      show.onclick=function(){
+        mm.style.display="none";
+      }
+
+      var a=document.getElementsByClassName("show")[0];
+     var b=document.getElementsByClassName("hide")[0];
+     var c=document.getElementsByClassName("data")[0];
+
+     b.onclick=function(){
+        data.style.display="none";
+     }
+     
+     function show() {
+  if (up.style.display == "none") {
+    down.style.display = "none";
+    up.style.display = "block";
+    text.style.display = "block";
+  } else {
+    down.style.display = "block";
+    up.style.display = "none";
+    text.style.display = "none";
+  }
+}
+
+    </script>
+</body>
+</html>
