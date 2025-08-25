@@ -13,9 +13,10 @@ It features a modern design with a structured homepage, product pages, smooth na
 - ✅ Swiper.js integration for sliders  
 - ✅ Optimized for mobile & tablet devices  
 
----
+
 ## 📂 Project Structure
 FASHION SHOP UI
+```
 │── index.html # Main homepage
 │── first.html # Secondary page
 │── pagel.html # Additional page
@@ -48,5 +49,6 @@ _Add a screenshot of your homepage here once hosted._
 
 
 👨‍💻 Author
+
 
 Harry Jindal
